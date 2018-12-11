@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Ajax PrimeFaces</title>
+	<h:outputStylesheet name="css/estilo.css" />
+
+</h:head>
+<h:body>
+	<h3>Ajax PrimeFaces</h3>
+	<h:form>
+		<p:panelGrid columns="3" style="width: 100%"
+			columnClasses="tabela-coluna-1, tabela-coluna-2, tabela-coluna-3">
+			<p:outputLabel value="a" />
+			<p:outputLabel value="VC concorda?" />
+			<p:selectOneRadio valueChangeListener="#{questionarioBean.listener}"
+				immediate="true">
+				<f:selectItems value="#{questionarioBean.respostas}" var="resposta"
+					itemLabel="#{resposta.nome}" itemValue="#{resposta.id}" />
+				<f:ajax event="change" execute="@this" render="panelGridA1"
+					listener="#{questionarioBean.listenerAjax}" immediate="true" />
+
+			</p:selectOneRadio>
+		</p:panelGrid>
+
+		<p:panelGrid columns="3" id="panelGridA1" style="width: 100%"
+			columnClasses="tabela-coluna-1, tabela-coluna-2, tabela-coluna-3">
+			<p:outputLabel value="a.1" id="txtA1"
+				rendered="#{questionarioBean.mostraA1}" />
+			<p:outputLabel value="Apareceu?" id="lblA1"
+				rendered="#{questionarioBean.mostraA1}" />
+			<p:selectOneRadio id="selectA1"
+				rendered="#{questionarioBean.mostraA1}">
+				<f:selectItems value="#{questionarioBean.respostas}" var="resposta"
+					itemLabel="#{resposta.nome}" itemValue="#{resposta.id}" />
+			</p:selectOneRadio>
+
+		</p:panelGrid>
+
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Hello World</title>
+</h:head>
+<h:body>
+	<h3>Hello World</h3>
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputLabel value="a" />
+			<h:outputLabel value="VC concorda?" />
+			<h:selectOneRadio valueChangeListener="#{questionarioBean.listener}"
+				immediate="true">
+				<f:selectItems value="#{questionarioBean.respostas}" var="resposta"
+					itemLabel="#{resposta.nome}" itemValue="#{resposta.id}" />
+				<f:ajax event="change" execute="@this" render="panelGridA1"
+					listener="#{questionarioBean.listenerAjax}" immediate="true" />
+
+			</h:selectOneRadio>
+		</h:panelGrid>
+
+		<h:panelGrid columns="3" id="panelGridA1">
+			<h:outputLabel value="a.1" id="txtA1"
+				rendered="#{questionarioBean.mostraA1}" />
+			<h:outputLabel value="Apareceu?" id="lblA1"
+				rendered="#{questionarioBean.mostraA1}" />
+			<h:selectOneRadio id="selectA1"
+				rendered="#{questionarioBean.mostraA1}">
+				<f:selectItems value="#{questionarioBean.respostas}" var="resposta"
+					itemLabel="#{resposta.nome}" itemValue="#{resposta.id}" />
+			</h:selectOneRadio>
+
+		</h:panelGrid>
+
+	</h:form>
+</h:body>
+</html>
